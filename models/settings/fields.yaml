@@ -1,0 +1,25 @@
+fields:
+    _matomo_register:
+        label: pensoft.matomo::lang.button.section
+        type: matomoregister
+        span: full
+    site_id:
+        label: pensoft.matomo::lang.fields.site_id
+        comment: pensoft.matomo::lang.fields.site_id_comment
+        type: number
+        span: left
+    registered_url:
+        label: pensoft.matomo::lang.fields.registered_url
+        type: text
+        span: right
+        readOnly: true
+    registered_at:
+        label: pensoft.matomo::lang.fields.registered_at
+        type: text
+        span: left
+        readOnly: true
+    access_granted_to:
+        label: pensoft.matomo::lang.fields.access_granted_to
+        type: text
+        span: right
+        readOnly: true

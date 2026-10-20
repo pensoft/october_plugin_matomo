@@ -1,0 +1,6 @@
+plugin:
+    name: 'pensoft.matomo::lang.plugin.name'
+    description: 'pensoft.matomo::lang.plugin.description'
+    author: Pensoft
+    icon: icon-bar-chart
+    homepage: ''

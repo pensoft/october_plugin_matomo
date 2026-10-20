@@ -1,0 +1,72 @@
+<?php
+    /*
+     * Status + "Register in Matomo" (RegisterButton::onRegisterMatomo).
+     * The password field is sent with the request only; it is never saved.
+     */
+?>
+<div class="matomo-register" id="<?= $this->getId() ?>">
+    <?php if (!$isProduction): ?>
+        <div class="callout callout-warning no-subheader">
+            <div class="header">
+                <i class="icon-warning"></i>
+                <h3><?= e(trans('pensoft.matomo::lang.button.not_production_title')) ?></h3>
+                <p><?= e(trans('pensoft.matomo::lang.button.not_production', ['env' => $environment !== '' ? $environment : '-'])) ?></p>
+            </div>
+        </div>
+    <?php endif ?>
+
+    <table class="table data" style="max-width: 760px">
+        <tbody>
+            <tr>
+                <th style="width: 220px"><?= e(trans('pensoft.matomo::lang.button.environment')) ?></th>
+                <td>
+                    <?php if ($isProduction): ?>
+                        <span class="text-success"><i class="icon-check"></i> production</span>
+                    <?php else: ?>
+                        <span class="text-warning"><i class="icon-flask"></i> <?= e($environment !== '' ? $environment : '-') ?></span>
+                    <?php endif ?>
+                </td>
+            </tr>
+            <tr>
+                <th><?= e(trans('pensoft.matomo::lang.button.site')) ?></th>
+                <td><?= e($siteName) ?> - <?= e(implode(', ', $siteUrls)) ?></td>
+            </tr>
+            <tr>
+                <th><?= e(trans('pensoft.matomo::lang.button.access')) ?></th>
+                <td><?= $grant[0] !== '' ? e($grant[0] . ' (' . $grant[1] . ')') : '<span class="text-danger">MATOMO_GRANT_USER ' . e(trans('pensoft.matomo::lang.button.not_set')) . '</span>' ?></td>
+            </tr>
+            <tr>
+                <th><?= e(trans('pensoft.matomo::lang.button.tracking')) ?></th>
+                <td>
+                    <?php if ($siteId): ?>
+                        <span class="text-success"><i class="icon-check"></i> <?= e(trans('pensoft.matomo::lang.button.tracking_on', ['id' => $siteId])) ?></span>
+                    <?php else: ?>
+                        <span class="text-muted"><?= e(trans('pensoft.matomo::lang.button.tracking_off')) ?></span>
+                    <?php endif ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group" style="max-width: 360px">
+        <label for="<?= $this->getId('password') ?>"><?= e(trans('pensoft.matomo::lang.button.password')) ?></label>
+        <input type="password" name="matomo_password" id="<?= $this->getId('password') ?>" class="form-control" autocomplete="off">
+        <p class="help-block"><?= e(trans('pensoft.matomo::lang.button.password_comment')) ?></p>
+    </div>
+
+    <?php if ($siteId): ?>
+        <div class="checkbox custom-checkbox">
+            <input type="checkbox" name="matomo_force" value="1" id="<?= $this->getId('force') ?>">
+            <label for="<?= $this->getId('force') ?>"><?= e(trans('pensoft.matomo::lang.button.force', ['id' => $siteId])) ?></label>
+        </div>
+    <?php endif ?>
+
+    <button
+        type="button"
+        class="btn btn-primary oc-icon-bar-chart"
+        data-request="<?= $this->getEventHandler('onRegisterMatomo') ?>"
+        data-request-confirm="<?= e(trans('pensoft.matomo::lang.button.confirm')) ?>"
+        data-load-indicator="<?= e(trans('pensoft.matomo::lang.button.working')) ?>">
+        <?= e(trans('pensoft.matomo::lang.button.label')) ?>
+    </button>
+</div>
