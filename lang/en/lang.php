@@ -26,6 +26,16 @@ return [
         'fix' => 'Remove it and put this line in the layout\'s <head> instead:',
         'console' => 'Tracking code with a fixed site ID found in the theme (it ignores the registered ID; replace it with {{ matomo_tracking_code() }}):',
     ],
+    'cookies' => [
+        'label' => 'Cookies (MATOMO_COOKIES)',
+        'mode_off' => 'no Matomo cookies; visits are still counted. No consent banner needed for Matomo.',
+        'mode_on' => 'Matomo sets its cookies. Under GDPR this usually needs the visitor\'s consent.',
+        'mode_consent' => 'counted without cookies until the visitor accepts; cookies only after that.',
+        'mode_consent_strict' => 'nothing is tracked until the visitor accepts.',
+        'missing_title' => 'Nothing in the theme asks for consent',
+        'missing_consent' => 'Consent mode is on, but no button or link in the theme gives or withdraws consent, so visitors can never accept: Matomo counts them without cookies only. Add data-matomo-consent="accept" / "reject" / "withdraw" to the cookie banner and privacy page (or call window.pensoftMatomo.accept() etc.).',
+        'missing_consent_strict' => 'Strict consent mode is on, but no button or link in the theme gives consent, so NOTHING is tracked. Add data-matomo-consent="accept" / "reject" / "withdraw" to the cookie banner and privacy page (or call window.pensoftMatomo.accept() etc.).',
+    ],
     'button' => [
         'section' => 'Register in Matomo',
         'label' => 'Register in Matomo',

@@ -63,6 +63,34 @@ The token is always sent in the POST body, never in a URL. If giving
 access fails, the site ID is still saved, so running the command again does
 not add the site twice - use `--access-only`.
 
+## Cookies
+
+`MATOMO_COOKIES` in `.env`:
+
+| value | what happens | consent banner needed for Matomo? |
+|---|---|---|
+| `off` (default) | no Matomo cookies (`disableCookies`); visits are still counted, returning visitors aren't recognised | no |
+| `on` | Matomo's own cookies | usually yes (GDPR) |
+| `consent` | counted without cookies until the visitor accepts, cookies after that (`requireCookieConsent`) | yes |
+| `consent_strict` | nothing tracked at all until the visitor accepts (`requireConsent`) | yes |
+
+With `consent` / `consent_strict`, the cookie banner and the privacy page
+(for withdrawing) talk to Matomo through:
+
+```html
+<button data-matomo-consent="accept">Accept</button>
+<button data-matomo-consent="reject">Reject</button>
+<a href="#" data-matomo-consent="withdraw">Withdraw my consent</a>
+```
+
+or `window.pensoftMatomo.accept()` / `.reject()` / `.withdraw()`;
+`window.pensoftMatomo.state()` is `"accepted"`, `"rejected"` or `null` (not asked
+yet). `<html data-matomo-consent="pending|accepted|rejected">` shows the choice
+(e.g. `html:not([data-matomo-consent="pending"]) .cookie-banner { display: none }`),
+and a `pensoft-matomo-consent` event fires on `document` when it changes.
+The settings page warns when a consent mode is on but nothing in the theme
+gives consent.
+
 ## Theme
 
 ```twig

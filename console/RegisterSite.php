@@ -27,6 +27,12 @@ class RegisterSite extends Command
         $log = function ($message) { $this->line('  ' . $message); };
         $registrar = Registrar::fromConfig($log);
 
+        $mode = Tracker::cookieMode();
+        $this->line('  Cookies: ' . $mode . ' - ' . trans('pensoft.matomo::lang.cookies.mode_' . $mode));
+        if (in_array($mode, ['consent', 'consent_strict'], true) && !Tracker::hasConsentControls()) {
+            $this->warn('  ' . trans('pensoft.matomo::lang.cookies.missing_' . $mode));
+        }
+
         // Pasted tracking code with a fixed ID: warn, whatever happens next.
         if ($hardcoded = Tracker::hardcodedSnippets()) {
             $this->warn('  ' . trans('pensoft.matomo::lang.hardcoded.console'));

@@ -62,7 +62,9 @@ class Plugin extends PluginBase
      *  - matomo_tracking_code(): the whole tracking snippet for <head>, or
      *    nothing while the site has no Matomo ID - one line in the layout;
      *  - matomo_site_id(): the site's Matomo ID, or null;
-     *  - matomo_url(): the Matomo server, protocol-relative.
+     *  - matomo_url(): the Matomo server, protocol-relative;
+     *  - matomo_cookie_mode(): off, on, consent or consent_strict (e.g. to
+     *    show a cookie banner only when there is consent to ask for).
      */
     public function registerMarkupTags()
     {
@@ -71,6 +73,7 @@ class Plugin extends PluginBase
                 'matomo_tracking_code' => [Tracker::class, 'trackingCode'],
                 'matomo_site_id'       => [Tracker::class, 'siteId'],
                 'matomo_url'           => [Tracker::class, 'trackerUrl'],
+                'matomo_cookie_mode'   => [Tracker::class, 'cookieMode'],
             ],
         ];
     }

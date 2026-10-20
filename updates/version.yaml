@@ -2,3 +2,5 @@
     - 'Initialize plugin: matomo:register command, Matomo settings, tracking helpers.'
 1.0.1:
     - 'One-line tracking function'
+1.0.2:
+    - 'Cookie options (MATOMO_COOKIES: off, on, consent, consent_strict) and consent API'

@@ -31,6 +31,9 @@ class RegisterButton extends FormWidgetBase
         $this->vars['grant'] = $registrar->grantUser();
         $this->vars['siteId'] = Tracker::siteId();
         $this->vars['hardcoded'] = Tracker::hardcodedSnippets();
+        $this->vars['cookieMode'] = Tracker::cookieMode();
+        $this->vars['consentMissing'] = in_array($this->vars['cookieMode'], ['consent', 'consent_strict'], true)
+            && !Tracker::hasConsentControls();
         return $this->makePartial('registerbutton');
     }
 

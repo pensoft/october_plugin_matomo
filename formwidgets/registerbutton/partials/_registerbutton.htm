@@ -21,6 +21,16 @@
         </div>
     <?php endif ?>
 
+    <?php if ($consentMissing): ?>
+        <div class="callout callout-warning no-subheader">
+            <div class="header">
+                <i class="icon-warning"></i>
+                <h3><?= e(trans('pensoft.matomo::lang.cookies.missing_title')) ?></h3>
+                <p><?= e(trans('pensoft.matomo::lang.cookies.missing_' . $cookieMode)) ?></p>
+            </div>
+        </div>
+    <?php endif ?>
+
     <?php if (!$isProduction): ?>
         <div class="callout callout-warning no-subheader">
             <div class="header">
@@ -50,6 +60,10 @@
             <tr>
                 <th><?= e(trans('pensoft.matomo::lang.button.access')) ?></th>
                 <td><?= $grant[0] !== '' ? e($grant[0] . ' (' . $grant[1] . ')') : '<span class="text-danger">MATOMO_GRANT_USER ' . e(trans('pensoft.matomo::lang.button.not_set')) . '</span>' ?></td>
+            </tr>
+            <tr>
+                <th><?= e(trans('pensoft.matomo::lang.cookies.label')) ?></th>
+                <td><code><?= e($cookieMode) ?></code> - <?= e(trans('pensoft.matomo::lang.cookies.mode_' . $cookieMode)) ?></td>
             </tr>
             <tr>
                 <th><?= e(trans('pensoft.matomo::lang.button.tracking')) ?></th>

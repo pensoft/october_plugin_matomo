@@ -50,6 +50,20 @@ return [
     // counted as downloads (Matomo's own list lacks e.g. eps and svg).
     'tracker' => [
         'download_extensions' => env('MATOMO_DOWNLOAD_EXTENSIONS', 'eps|svg'),
+
+        // Cookies (MATOMO_COOKIES):
+        //  off            - no Matomo cookies at all (disableCookies); visits are
+        //                   still counted. No cookie banner needed for Matomo.
+        //  on             - Matomo's own cookies (returning visitors recognised);
+        //                   needs consent under GDPR in most cases.
+        //  consent        - visits are counted without cookies until the visitor
+        //                   accepts; cookies only after that (requireCookieConsent).
+        //  consent_strict - nothing is tracked at all until the visitor accepts
+        //                   (requireConsent).
+        // With the consent modes, a banner / privacy page calls
+        // window.pensoftMatomo.accept() / .reject() / .withdraw(), or uses
+        // data-matomo-consent="accept|reject|withdraw" on a button or link.
+        'cookies' => env('MATOMO_COOKIES', 'off'),
     ],
 
     // Seconds to wait for the Matomo API.
