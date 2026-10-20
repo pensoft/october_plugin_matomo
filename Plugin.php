@@ -58,16 +58,19 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Twig: matomo_site_id() - the site's Matomo ID, or null while it has
-     * none (then the theme leaves the tracking code out); matomo_url() -
-     * the Matomo server, protocol-relative ("//matomo.example.net/").
+     * Twig:
+     *  - matomo_tracking_code(): the whole tracking snippet for <head>, or
+     *    nothing while the site has no Matomo ID - one line in the layout;
+     *  - matomo_site_id(): the site's Matomo ID, or null;
+     *  - matomo_url(): the Matomo server, protocol-relative.
      */
     public function registerMarkupTags()
     {
         return [
             'functions' => [
-                'matomo_site_id' => [Tracker::class, 'siteId'],
-                'matomo_url'     => [Tracker::class, 'trackerUrl'],
+                'matomo_tracking_code' => [Tracker::class, 'trackingCode'],
+                'matomo_site_id'       => [Tracker::class, 'siteId'],
+                'matomo_url'           => [Tracker::class, 'trackerUrl'],
             ],
         ];
     }

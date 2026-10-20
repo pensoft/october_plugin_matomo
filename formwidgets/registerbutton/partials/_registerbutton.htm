@@ -5,6 +5,22 @@
      */
 ?>
 <div class="matomo-register" id="<?= $this->getId() ?>">
+    <?php if ($hardcoded): ?>
+        <div class="callout callout-danger no-subheader">
+            <div class="header">
+                <i class="icon-exclamation-triangle"></i>
+                <h3><?= e(trans('pensoft.matomo::lang.hardcoded.title')) ?></h3>
+                <p><?= e(trans('pensoft.matomo::lang.hardcoded.text')) ?></p>
+                <ul>
+                    <?php foreach ($hardcoded as $h): ?>
+                        <li><code><?= e($h['file']) ?></code>, <?= e(trans('pensoft.matomo::lang.hardcoded.line', ['line' => $h['line'], 'id' => $h['id']])) ?></li>
+                    <?php endforeach ?>
+                </ul>
+                <p><?= e(trans('pensoft.matomo::lang.hardcoded.fix')) ?> <code>{{ matomo_tracking_code() }}</code></p>
+            </div>
+        </div>
+    <?php endif ?>
+
     <?php if (!$isProduction): ?>
         <div class="callout callout-warning no-subheader">
             <div class="header">

@@ -19,6 +19,13 @@ return [
         'registered_at' => 'Registered at',
         'access_granted_to' => 'Access granted to',
     ],
+    'hardcoded' => [
+        'title' => 'Tracking code pasted into the theme',
+        'text' => 'The theme has Matomo tracking code with a fixed site ID. It ignores the ID saved here, keeps sending visits to that site (often another project\'s, if it was copied), and counts them twice next to matomo_tracking_code():',
+        'line' => 'line :line - site ID :id',
+        'fix' => 'Remove it and put this line in the layout\'s <head> instead:',
+        'console' => 'Tracking code with a fixed site ID found in the theme (it ignores the registered ID; replace it with {{ matomo_tracking_code() }}):',
+    ],
     'button' => [
         'section' => 'Register in Matomo',
         'label' => 'Register in Matomo',

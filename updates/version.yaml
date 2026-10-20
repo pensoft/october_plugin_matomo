@@ -1,2 +1,4 @@
 1.0.0:
     - 'Initialize plugin: matomo:register command, Matomo settings, tracking helpers.'
+1.0.1:
+    - 'One-line tracking function'

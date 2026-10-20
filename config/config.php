@@ -46,6 +46,12 @@ return [
         'type'                    => 'website',
     ],
 
+    // The tracking code ({{ matomo_tracking_code() }}): extra file types
+    // counted as downloads (Matomo's own list lacks e.g. eps and svg).
+    'tracker' => [
+        'download_extensions' => env('MATOMO_DOWNLOAD_EXTENSIONS', 'eps|svg'),
+    ],
+
     // Seconds to wait for the Matomo API.
     'timeout' => 20,
 ];

@@ -30,6 +30,7 @@ class RegisterButton extends FormWidgetBase
         $this->vars['siteUrls'] = $registrar->siteUrls();
         $this->vars['grant'] = $registrar->grantUser();
         $this->vars['siteId'] = Tracker::siteId();
+        $this->vars['hardcoded'] = Tracker::hardcodedSnippets();
         return $this->makePartial('registerbutton');
     }
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Console\Command;
 use Pensoft\Matomo\Classes\Registrar;
+use Pensoft\Matomo\Classes\Tracker;
 use Pensoft\Matomo\Exceptions\MatomoException;
 
 /**
@@ -25,6 +26,14 @@ class RegisterSite extends Command
     {
         $log = function ($message) { $this->line('  ' . $message); };
         $registrar = Registrar::fromConfig($log);
+
+        // Pasted tracking code with a fixed ID: warn, whatever happens next.
+        if ($hardcoded = Tracker::hardcodedSnippets()) {
+            $this->warn('  ' . trans('pensoft.matomo::lang.hardcoded.console'));
+            foreach ($hardcoded as $h) {
+                $this->warn('    ' . $h['file'] . ':' . $h['line'] . ' (site ID ' . $h['id'] . ')');
+            }
+        }
 
         try {
             $registrar->assertProduction();
