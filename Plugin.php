@@ -1,7 +1,6 @@
 <?php namespace Pensoft\Matomo;
 
 use System\Classes\PluginBase;
-use System\Classes\MarkupManager;
 use Pensoft\Matomo\Classes\Tracker;
 
 /**
@@ -67,18 +66,19 @@ class Plugin extends PluginBase
      *  - matomo_cookie_mode(): off, on, consent or consent_strict (e.g. to
      *    show a cookie banner only when there is consent to ask for).
      *
-     * Registered through MarkupManager in boot(): on October 4 functions
-     * returned from registerMarkupTags() do not reach the theme's Twig.
+     * Not through MarkupManager::registerCallback(): on October 4 that
+     * registers at once, and MarkupManager then never loads the
+     * registerMarkupTags() of the modules and the other plugins.
      */
-    public function boot(): void
+    public function registerMarkupTags(): array
     {
-        MarkupManager::instance()->registerCallback(function ($manager): void {
-            $manager->registerFunctions([
+        return [
+            'functions' => [
                 'matomo_tracking_code' => fn() => Tracker::trackingCode(),
                 'matomo_site_id'       => fn() => Tracker::siteId(),
                 'matomo_url'           => fn() => Tracker::trackerUrl(),
                 'matomo_cookie_mode'   => fn() => Tracker::cookieMode(),
-            ]);
-        });
+            ],
+        ];
     }
 }

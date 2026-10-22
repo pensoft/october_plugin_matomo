@@ -9,3 +9,5 @@
     - 'Migrated to OctoberCMS 4 and PHP 8.2'
 4.0.2:
     - 'Twig functions registered through MarkupManager (October 4)'
+4.0.3:
+    - 'Twig functions back in registerMarkupTags (a MarkupManager callback stops October 4 loading every other plugin markup tag)'
