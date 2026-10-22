@@ -4,3 +4,6 @@
     - 'One-line tracking function'
 1.0.2:
     - 'Cookie options (MATOMO_COOKIES: off, on, consent, consent_strict) and consent API'
+
+4.0.1:
+    - 'Migrated to OctoberCMS 4 and PHP 8.2'

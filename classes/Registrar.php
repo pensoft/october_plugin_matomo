@@ -23,7 +23,7 @@ class Registrar
     /** @var callable */
     protected $log;
 
-    public function __construct(array $config, MatomoClient $client = null, callable $log = null)
+    public function __construct(array $config, ?MatomoClient $client = null, ?callable $log = null)
     {
         $this->config = $config;
         $this->client = $client;
@@ -33,7 +33,7 @@ class Registrar
     /**
      * A registrar with the plugin's configuration (config/config.php + .env).
      */
-    public static function fromConfig(callable $log = null)
+    public static function fromConfig(?callable $log = null)
     {
         $config = [];
         foreach (['url', 'token', 'environment', 'grant_user', 'grant_access', 'site_id', 'site', 'defaults', 'timeout'] as $key) {

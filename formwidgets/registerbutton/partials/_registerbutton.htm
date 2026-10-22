@@ -85,9 +85,9 @@
     </div>
 
     <?php if ($siteId): ?>
-        <div class="checkbox custom-checkbox">
-            <input type="checkbox" name="matomo_force" value="1" id="<?= $this->getId('force') ?>">
-            <label for="<?= $this->getId('force') ?>"><?= e(trans('pensoft.matomo::lang.button.force', ['id' => $siteId])) ?></label>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="matomo_force" value="1" id="<?= $this->getId('force') ?>">
+            <label class="form-check-label" for="<?= $this->getId('force') ?>"><?= e(trans('pensoft.matomo::lang.button.force', ['id' => $siteId])) ?></label>
         </div>
     <?php endif ?>
 

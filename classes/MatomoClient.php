@@ -19,7 +19,7 @@ class MatomoClient
     /** @var Client */
     protected $http;
 
-    public function __construct($url, $token, $timeout = 20, Client $http = null)
+    public function __construct($url, $token, $timeout = 20, ?Client $http = null)
     {
         $this->url = rtrim((string) $url, '/') . '/index.php';
         $this->token = (string) $token;

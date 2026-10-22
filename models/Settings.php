@@ -8,7 +8,7 @@ use Model;
  */
 class Settings extends Model
 {
-    public $implement = ['System.Behaviors.SettingsModel'];
+    public $implement = [\System\Behaviors\SettingsModel::class];
 
     public $settingsCode = 'pensoft_matomo_settings';
 

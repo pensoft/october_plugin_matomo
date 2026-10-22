@@ -9,7 +9,7 @@ use Pensoft\Matomo\Classes\Tracker;
  */
 class Plugin extends PluginBase
 {
-    public function pluginDetails()
+    public function pluginDetails(): array
     {
         return [
             'name'        => 'pensoft.matomo::lang.plugin.name',
@@ -19,12 +19,12 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function register()
+    public function register(): void
     {
         $this->registerConsoleCommand('matomo.register', \Pensoft\Matomo\Console\RegisterSite::class);
     }
 
-    public function registerSettings()
+    public function registerSettings(): array
     {
         return [
             'settings' => [
@@ -40,14 +40,14 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function registerFormWidgets()
+    public function registerFormWidgets(): array
     {
         return [
             \Pensoft\Matomo\FormWidgets\RegisterButton::class => 'matomoregister',
         ];
     }
 
-    public function registerPermissions()
+    public function registerPermissions(): array
     {
         return [
             'pensoft.matomo.settings' => [
@@ -66,7 +66,7 @@ class Plugin extends PluginBase
      *  - matomo_cookie_mode(): off, on, consent or consent_strict (e.g. to
      *    show a cookie banner only when there is consent to ask for).
      */
-    public function registerMarkupTags()
+    public function registerMarkupTags(): array
     {
         return [
             'functions' => [
