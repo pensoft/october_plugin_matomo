@@ -7,3 +7,5 @@
 
 4.0.1:
     - 'Migrated to OctoberCMS 4 and PHP 8.2'
+4.0.2:
+    - 'Twig functions registered through MarkupManager (October 4)'
